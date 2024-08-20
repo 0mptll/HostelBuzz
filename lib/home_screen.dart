@@ -9,11 +9,11 @@ class HomeScreen extends StatelessWidget {
         title: Row(
           children: <Widget>[
             Image.asset(
-              'assets/logo.png',
-              height: 40,
+              'assets/DDU_2.png', // Path to your logo
+              height: 40, // Adjust as needed
             ),
-            SizedBox(width: 10),
-            Text('HostelBuzz Home'),
+            SizedBox(width: 10), // Space between logo and title
+            Text('Welcome to DDU Hostel'),
           ],
         ),
       ),
@@ -33,6 +33,12 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/reviews');
               },
               child: Text('Rate and Review Food'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/maintenance');
+              },
+              child: Text('Maintenance Requests'),
             ),
           ],
         ),

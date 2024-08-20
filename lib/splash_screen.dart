@@ -20,8 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(Duration(seconds: 2),(){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+      Navigator.pushReplacementNamed(context, '/home');
     });
+
 
   }
 
@@ -33,13 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/logo.png', width: 300),
+            Image.asset('assets/DDU_2.png', width: 300),
             SizedBox(height: 140),
             Text(
               'Powered by',
               style: TextStyle(color: Colors.white),
             ),
-            // Replace 'assets/images/powered_by_logo.png' with your actual logo path
             Image.asset('assets/logo.png', width: 150),
           ],
         ),
