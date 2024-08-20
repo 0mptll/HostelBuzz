@@ -37,6 +37,12 @@ class CustomDrawer extends StatelessWidget {
               Navigator.popAndPushNamed(context, '/reviews');
             },
           ),
+          ListTile(
+            title: Text('Maintenance Requests'),
+            onTap: () {
+              Navigator.popAndPushNamed(context, '/maintenance');
+            },
+          ),
         ],
       ),
     );
