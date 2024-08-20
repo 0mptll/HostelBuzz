@@ -9,10 +9,10 @@ class HomeScreen extends StatelessWidget {
         title: Row(
           children: <Widget>[
             Image.asset(
-              'assets/img.png', // Path to your logo
-              height: 40, // Adjust as needed
+              'assets/logo.png',
+              height: 40,
             ),
-            SizedBox(width: 10), // Space between logo and title
+            SizedBox(width: 10),
             Text('HostelBuzz Home'),
           ],
         ),

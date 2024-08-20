@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hostelbuzz/splash_screen.dart';
 import 'home_screen.dart';
 import 'food_vote_screen.dart';
 import 'review_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    home: SplashScreen(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
