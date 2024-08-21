@@ -16,7 +16,7 @@ class _FoodVoteScreenState extends State<FoodVoteScreen> {
   void _vote(int index) {
     setState(() {
       if (foodItems[index].votes == 0) {
-        foodItems[index].votes = 1;
+        foodItems[index].votes += 1;
       } else {
         foodItems[index].votes = 0;
       }
