@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'food_item.dart'; // Adjust path as necessary
+import 'food_item.dart';
 
 class FoodVoteScreen extends StatefulWidget {
   @override
@@ -11,6 +11,10 @@ class _FoodVoteScreenState extends State<FoodVoteScreen> {
     FoodItem(name: 'Pasta', votes: 0),
     FoodItem(name: 'Pizza', votes: 0),
     FoodItem(name: 'Samosa', votes: 0),
+    FoodItem(name: 'Vada pav', votes: 0),
+    FoodItem(name: 'Aloo Paratha',  votes: 0),
+    FoodItem(name: 'Pav Bhaji', votes: 0),
+    FoodItem(name: 'Chole Bhature', votes: 0),
   ];
 
   void _vote(int index) {
