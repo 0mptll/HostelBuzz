@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'DialogBox/ErrorDialog.dart';
+import 'DialogBox/SuccessDialog.dart';
 import 'local_storage.dart';
 import 'maintenance_request.dart';
 
@@ -6,31 +8,44 @@ class MaintenanceRequestScreen extends StatefulWidget {
   @override
   _MaintenanceRequestScreenState createState() => _MaintenanceRequestScreenState();
 }
-
 class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
-  final _roomNumberController = TextEditingController();
   final _issueDescriptionController = TextEditingController();
 
+  // List of rooms and wings/buildings
+  String? _selectedRoom;
+  String? _selectedWing;
+
+  List<String> rooms = ['101', '102', '103', '104'];
+  List<String> wings = ['A', 'B', 'C', 'D'];
+
   void _submitRequest() {
-    final roomNumber = _roomNumberController.text;
     final issueDescription = _issueDescriptionController.text;
 
-    if (roomNumber.isEmpty || issueDescription.isEmpty) {
+    // Check if any required fields are empty
+    if (_selectedRoom == null || _selectedWing == null || issueDescription.isEmpty) {
+      showErrorDialog(
+        context,
+        title: 'Error',
+        content: 'Please fill in all the fields before submitting the request.',
+      );
       return;
     }
 
     final request = MaintenanceRequest(
-      roomNumber: roomNumber,
+      roomNumber: '$_selectedWing-$_selectedRoom',
       issueDescription: issueDescription,
     );
 
     LocalStorage.addRequest(request);
 
-    _roomNumberController.clear();
+    _selectedRoom = null;
+    _selectedWing = null;
     _issueDescriptionController.clear();
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Maintenance request submitted!')),
+    showSuccessDialog(
+      context,
+      title: 'Success',
+      content: 'Maintenance request submitted successfully!',
     );
 
     setState(() {}); // Refresh the list of requests
@@ -46,9 +61,35 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            TextField(
-              controller: _roomNumberController,
-              decoration: InputDecoration(labelText: 'Room Number'),
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(labelText: 'Select Wing'),
+              value: _selectedWing,
+              items: wings.map((wing) {
+                return DropdownMenuItem(
+                  value: wing,
+                  child: Text(wing),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedWing = value;
+                });
+              },
+            ),
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(labelText: 'Select Room Number'),
+              value: _selectedRoom,
+              items: rooms.map((room) {
+                return DropdownMenuItem(
+                  value: room,
+                  child: Text(room),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedRoom = value;
+                });
+              },
             ),
             TextField(
               controller: _issueDescriptionController,
