@@ -8,10 +8,10 @@ class MaintenanceRequestScreen extends StatefulWidget {
   @override
   _MaintenanceRequestScreenState createState() => _MaintenanceRequestScreenState();
 }
+
 class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
   final _issueDescriptionController = TextEditingController();
 
-  // List of rooms and wings/buildings
   String? _selectedRoom;
   String? _selectedWing;
 
@@ -21,7 +21,6 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
   void _submitRequest() {
     final issueDescription = _issueDescriptionController.text;
 
-    // Check if any required fields are empty
     if (_selectedRoom == null || _selectedWing == null || issueDescription.isEmpty) {
       showErrorDialog(
         context,
@@ -36,7 +35,7 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
       issueDescription: issueDescription,
     );
 
-    LocalStorage.addRequest(request);
+    LocalStorage.addMaintenanceRequest(request);
 
     _selectedRoom = null;
     _selectedWing = null;
@@ -53,16 +52,25 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final requests = LocalStorage.getRequests();
+    final requests = LocalStorage.getMaintenanceRequests(); // Ensure this method is implemented correctly
 
     return Scaffold(
-      appBar: AppBar(title: Text('Maintenance Request')),
+      appBar: AppBar(
+          title: Text('Maintenance Request'),
+          backgroundColor: Colors.teal,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(labelText: 'Select Wing'),
+              decoration: InputDecoration(
+                labelText: 'Select Wing',
+                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+              ),
               value: _selectedWing,
               items: wings.map((wing) {
                 return DropdownMenuItem(
@@ -76,8 +84,14 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
                 });
               },
             ),
+            SizedBox(height: 16.0),
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(labelText: 'Select Room Number'),
+              decoration: InputDecoration(
+                labelText: 'Select Room Number',
+                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+              ),
               value: _selectedRoom,
               items: rooms.map((room) {
                 return DropdownMenuItem(
@@ -91,24 +105,43 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
                 });
               },
             ),
+            SizedBox(height: 16.0),
             TextField(
               controller: _issueDescriptionController,
-              decoration: InputDecoration(labelText: 'Issue Description'),
+              decoration: InputDecoration(
+                labelText: 'Issue Description',
+                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.white,
+              ),
+              maxLines: 3,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: _submitRequest,
               child: Text('Submit Request'),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.teal, // Text color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16.0),
+              ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.0),
             Expanded(
               child: ListView.builder(
                 itemCount: requests.length,
                 itemBuilder: (context, index) {
                   final request = requests[index];
-                  return ListTile(
-                    title: Text('Room: ${request.roomNumber}'),
-                    subtitle: Text('Issue: ${request.issueDescription}'),
+                  return Card(
+                    margin: EdgeInsets.symmetric(vertical: 8.0),
+                    elevation: 4,
+                    child: ListTile(
+                      title: Text('Room: ${request.roomNumber}'),
+                      subtitle: Text('Issue: ${request.issueDescription}'),
+                      contentPadding: EdgeInsets.all(16.0),
+                    ),
                   );
                 },
               ),

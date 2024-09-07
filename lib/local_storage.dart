@@ -1,17 +1,38 @@
+// lib/local_storage.dart
+
 import 'maintenance_request.dart';
+import 'laundry_request.dart';  // Import the LaundryRequest class
 
 class LocalStorage {
-  static final List<MaintenanceRequest> _requests = [];
+  // Existing maintenance request storage
+  static final List<MaintenanceRequest> _maintenanceRequests = [];
 
-  static List<MaintenanceRequest> getRequests() {
-    return _requests;
+  // New laundry request storage
+  static final List<LaundryRequest> _laundryRequests = [];
+
+  // Maintenance request methods
+  static List<MaintenanceRequest> getMaintenanceRequests() {
+    return _maintenanceRequests;
   }
 
-  static void addRequest(MaintenanceRequest request) {
-    _requests.add(request);
+  static void addMaintenanceRequest(MaintenanceRequest request) {
+    _maintenanceRequests.add(request);
   }
 
-  static void clearRequests() {
-    _requests.clear();
+  static void clearMaintenanceRequests() {
+    _maintenanceRequests.clear();
+  }
+
+  // Laundry request methods
+  static List<LaundryRequest> getLaundryRequests() {
+    return _laundryRequests;
+  }
+
+  static void addLaundryRequest(LaundryRequest request) {
+    _laundryRequests.add(request);
+  }
+
+  static void clearLaundryRequests() {
+    _laundryRequests.clear();
   }
 }

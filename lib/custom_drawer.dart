@@ -1,3 +1,5 @@
+// lib/custom_drawer.dart
+
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -22,7 +24,7 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             title: Text('Home'),
             onTap: () {
-              Navigator.popAndPushNamed(context, '/');
+              Navigator.popAndPushNamed(context, '/home');
             },
           ),
           ListTile(
@@ -41,6 +43,18 @@ class CustomDrawer extends StatelessWidget {
             title: Text('Maintenance Requests'),
             onTap: () {
               Navigator.popAndPushNamed(context, '/maintenance');
+            },
+          ),
+          ListTile(
+            title: Text('Book Laundry'),
+            onTap: () {
+              Navigator.popAndPushNamed(context, '/laundryBooking');
+            },
+          ),
+          ListTile(
+            title: Text('Laundry Status'),
+            onTap: () {
+              Navigator.popAndPushNamed(context, '/laundryStatus');
             },
           ),
         ],

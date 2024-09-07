@@ -28,12 +28,14 @@ class HomeScreen extends StatelessWidget {
               },
               child: Text('Vote on Food'),
             ),
+            SizedBox(height: 16), // Space between buttons
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/reviews');
               },
               child: Text('Rate and Review Food'),
             ),
+            SizedBox(height: 16), // Space between buttons
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/maintenance');
