@@ -33,6 +33,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   http: ^1.2.2
   pocketbase: ^0.18.1
+  supabase_flutter: ^2.6.0
+  google_sign_in: ^6.2.1
+  supabase_auth_ui: ^0.5.1
+  flutter_dotenv: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +65,7 @@ flutter:
       - assets/logo.png
       - assets/DDU_2.png
       - assets/logo2.png
+      - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
