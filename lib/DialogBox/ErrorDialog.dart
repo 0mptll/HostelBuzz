@@ -4,7 +4,7 @@ class ErrorDialog extends StatelessWidget {
   final String title;
   final String content;
 
-  ErrorDialog({required this.title, required this.content});
+  const ErrorDialog({super.key, required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ErrorDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop(); // Close the dialog
           },
-          child: Text('OK'),
+          child: const Text('OK'),
         ),
       ],
     );

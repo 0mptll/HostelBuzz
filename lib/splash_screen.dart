@@ -1,29 +1,26 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:hostelbuzz/main.dart';
 
-import 'home_screen.dart';
+import 'Auth/login.dart';
+// Import the LoginScreen
 
-class SplashScreen extends StatefulWidget{
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
-
-
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
-
-    Timer(Duration(seconds: 2),(){
-      Navigator.pushReplacementNamed(context, '/login');
+    Timer(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) =>  LoginScreen()),
+      );
     });
-
-
   }
 
   @override
@@ -35,8 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/DDU_2.png', width: 300),
-            SizedBox(height: 140),
-            Text(
+            const SizedBox(height: 140),
+            const Text(
               'Powered by',
               style: TextStyle(color: Colors.white),
             ),
@@ -46,7 +43,4 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
-
-
-
 }

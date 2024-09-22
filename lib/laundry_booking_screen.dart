@@ -3,6 +3,8 @@ import 'local_storage.dart';
 import 'laundry_request.dart';
 
 class LaundryBookingScreen extends StatefulWidget {
+  const LaundryBookingScreen({super.key});
+
   @override
   _LaundryBookingScreenState createState() => _LaundryBookingScreenState();
 }
@@ -38,11 +40,11 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text("Invalid Time"),
-          content: Text("Please select a time between 8:00 AM and 8:00 PM."),
+          title: const Text("Invalid Time"),
+          content: const Text("Please select a time between 8:00 AM and 8:00 PM."),
           actions: <Widget>[
             TextButton(
-              child: Text("OK"),
+              child: const Text("OK"),
               onPressed: () {
                 Navigator.of(ctx).pop();
               },
@@ -55,8 +57,8 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
 
   bool _isTimeValid(TimeOfDay time) {
     final now = TimeOfDay.now();
-    final start = TimeOfDay(hour: 8, minute: 0);
-    final end = TimeOfDay(hour: 20, minute: 0);
+    const start = TimeOfDay(hour: 8, minute: 0);
+    const end = TimeOfDay(hour: 20, minute: 0);
     return (time.hour > start.hour || (time.hour == start.hour && time.minute >= start.minute)) &&
         (time.hour < end.hour || (time.hour == end.hour && time.minute <= end.minute));
   }
@@ -72,11 +74,11 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text("Error"),
-          content: Text("Please enter all required fields."),
+          title: const Text("Error"),
+          content: const Text("Please enter all required fields."),
           actions: <Widget>[
             TextButton(
-              child: Text("OK"),
+              child: const Text("OK"),
               onPressed: () {
                 Navigator.of(ctx).pop();
               },
@@ -113,11 +115,11 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text("Request Submitted"),
-        content: Text("Your laundry request has been submitted."),
+        title: const Text("Request Submitted"),
+        content: const Text("Your laundry request has been submitted."),
         actions: <Widget>[
           TextButton(
-            child: Text("OK"),
+            child: const Text("OK"),
             onPressed: () {
               Navigator.of(ctx).pop();
             },
@@ -131,26 +133,26 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Book Laundry Service"),
+        title: const Text("Book Laundry Service"),
         backgroundColor: Colors.teal,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextField(
               controller: _studentNameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Your Name',
                 border: OutlineInputBorder(),
                 fillColor: Colors.white,
                 filled: true,
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Select Wing',
                 border: OutlineInputBorder(),
                 filled: true,
@@ -169,9 +171,9 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Select Room Number',
                 border: OutlineInputBorder(),
                 filled: true,
@@ -190,7 +192,7 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             GestureDetector(
               onTap: _selectTime,
               child: AbsorbPointer(
@@ -198,7 +200,7 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
                   controller: TextEditingController(
                     text: _selectedTime?.format(context) ?? 'Select Preferred Pick-up Time',
                   ),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Preferred Pick-up Time',
                     border: OutlineInputBorder(),
                     fillColor: Colors.white,
@@ -207,10 +209,10 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: _notesController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Additional Notes',
                 border: OutlineInputBorder(),
                 fillColor: Colors.white,
@@ -218,17 +220,17 @@ class _LaundryBookingScreenState extends State<LaundryBookingScreen> {
               ),
               maxLines: 3,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              child: Text("Submit Request"),
               onPressed: _submitRequest,
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white, backgroundColor: Colors.teal, // Text color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
               ),
+              child: const Text("Submit Request"),
             ),
           ],
         ),

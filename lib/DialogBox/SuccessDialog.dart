@@ -4,7 +4,7 @@ class SuccessDialog extends StatelessWidget {
   final String title;
   final String content;
 
-  SuccessDialog({required this.title, required this.content});
+  const SuccessDialog({super.key, required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class SuccessDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop(); // Close the dialog
           },
-          child: Text('OK'),
+          child: const Text('OK'),
         ),
       ],
     );

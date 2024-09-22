@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "745655765971",
+    "project_id": "hostelbuzz",
+    "storage_bucket": "hostelbuzz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745655765971:android:59e4494c13c465e5733d26",
+        "android_client_info": {
+          "package_name": "com.example.hostelbuzz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxyefqRy9qTRqVo5qO3lx5TSmpPWLcvVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
