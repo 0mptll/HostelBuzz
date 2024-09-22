@@ -1,46 +1,106 @@
 import 'package:flutter/material.dart';
 import 'custom_drawer.dart';
+import 'qr_code_scanner_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final supabase = Supabase.instance.client;
+    final user = supabase.auth.currentUser;
+    final profileImageUrl = user?.userMetadata?['avatar_url'];
+    final fullName = user?.userMetadata?['full_name'] ?? 'User'; // Default name if not available
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: <Widget>[
+            const SizedBox(width: 8), // Space for the drawer icon
             Image.asset(
-              'assets/DDU_2.png', // Path to your logo
-              height: 40, // Adjust as needed
+              'assets/DDU_2.png',
+              height: 40,
             ),
-            SizedBox(width: 10), // Space between logo and title
-            Text('Welcome to DDU Hostel'),
+            const SizedBox(width: 10),
+            const Expanded(
+              child: Text(
+                'Welcome to DDU Hostel',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ],
         ),
       ),
-      drawer: CustomDrawer(),
-      body: Center(
+      drawer: const CustomDrawer(),
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/foodVote');
-              },
-              child: Text('Vote on Food'),
+            // Profile Picture Section
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  // Centered Profile Picture
+                  CircleAvatar(
+                    backgroundImage: profileImageUrl != null
+                        ? NetworkImage(profileImageUrl)
+                        : null,
+                    child: profileImageUrl == null
+                        ? const Icon(Icons.person, size: 40)
+                        : null,
+                    radius: 50, // Adjust the radius as needed
+                  ),
+                  const SizedBox(height: 8),
+                  // Display User's Name
+                  Text(
+                    fullName,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
             ),
-            SizedBox(height: 16), // Space between buttons
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/reviews');
-              },
-              child: Text('Rate and Review Food'),
-            ),
-            SizedBox(height: 16), // Space between buttons
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/maintenance');
-              },
-              child: Text('Maintenance Requests'),
+            // Main Content Section
+            Center(
+              child: Column(
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/foodVote');
+                    },
+                    child: const Text('Vote on Food'),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/reviews');
+                    },
+                    child: const Text('Rate and Review Food'),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/maintenance');
+                    },
+                    child: const Text('Maintenance Requests'),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => QRCodeScannerScreen()),
+                      );
+                    },
+                    child: const Text('Scan QR Code'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

@@ -1,33 +1,32 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:hostelbuzz/Auth/AuthPage.dart';
-import 'package:hostelbuzz/Auth/TempLoginScreen.dart';
-import 'package:hostelbuzz/splash_screen.dart';
+import 'package:hostelbuzz/qr_code_scanner_screen.dart';
+import 'package:hostelbuzz/review_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'home_screen.dart';
+import 'Auth/login.dart';
+import 'Auth/profile_completion_screen.dart';
 import 'food_vote_screen.dart';
-import 'review_screen.dart';
+import 'laundry_booking_screen.dart';
+import 'laundry_status_screen.dart';
 import 'maintenance_request_screen.dart';
-import 'laundry_booking_screen.dart'; // Import LaundryBookingScreen
-import 'laundry_status_screen.dart';  // Import LaundryStatusScreen
-import 'Auth/LoginScreen.dart';
-
-
+import 'splash_screen.dart';
+import 'home_screen.dart';
+// Import other screens as necessary
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: '.env');
+  /// TODO: update Supabase credentials with your own
   await Supabase.initialize(
-    url: dotenv.get('SUPABASE_URL'),
-    anonKey: dotenv.get('SUPABASE_ANON_KEY'),
+    url: 'https://vxfsyqyrgyszntwxeeqc.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4ZnN5cXlyZ3lzem50d3hlZXFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY5MzI2ODEsImV4cCI6MjA0MjUwODY4MX0.28-EdaM-KFasYIW0Yy7U1OjsYVRMZJSSNpI_CsfdpeE',
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 final supabase = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,14 +37,17 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(),
       routes: {
-        // '/login': (context) => TempLoginScreen(),
-        '/login' : (context) => LoginScreen(),
-        '/home': (context) => HomeScreen(),
-        '/foodVote': (context) => FoodVoteScreen(),
-        '/reviews': (context) => ReviewScreen(),
-        '/maintenance': (context) => MaintenanceRequestScreen(),
-        '/laundryBooking': (context) => LaundryBookingScreen(), // Add route for LaundryBookingScreen
-        '/laundryStatus': (context) => LaundryStatusScreen(),    // Add route for LaundryStatusScreen
+        '/login': (context) => const LoginScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/profileCompletion': (context) => ProfileCompletionScreen(),
+        '/foodVote': (context) => const FoodVoteScreen(),
+        '/reviews': (context) => const ReviewScreen(),
+        '/maintenance': (context) => const MaintenanceRequestScreen(),
+        '/laundryBooking': (context) => const LaundryBookingScreen(), // Add route for LaundryBookingScreen
+        '/laundryStatus': (context) => const LaundryStatusScreen(),
+        // Add this to the routes map in main.dart
+        '/qrScanner': (context) => QRCodeScannerScreen(),
+        // Add other routes as necessary
       },
     );
   }

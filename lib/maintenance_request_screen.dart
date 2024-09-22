@@ -5,6 +5,8 @@ import 'local_storage.dart';
 import 'maintenance_request.dart';
 
 class MaintenanceRequestScreen extends StatefulWidget {
+  const MaintenanceRequestScreen({super.key});
+
   @override
   _MaintenanceRequestScreenState createState() => _MaintenanceRequestScreenState();
 }
@@ -56,16 +58,16 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Maintenance Request'),
+          title: const Text('Maintenance Request'),
           backgroundColor: Colors.teal,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Select Wing',
                 border: OutlineInputBorder(),
                 filled: true,
@@ -84,9 +86,9 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Select Room Number',
                 border: OutlineInputBorder(),
                 filled: true,
@@ -105,10 +107,10 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: _issueDescriptionController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Issue Description',
                 border: OutlineInputBorder(),
                 filled: true,
@@ -116,31 +118,31 @@ class _MaintenanceRequestScreenState extends State<MaintenanceRequestScreen> {
               ),
               maxLines: 3,
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: _submitRequest,
-              child: Text('Submit Request'),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white, backgroundColor: Colors.teal, // Text color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
               ),
+              child: const Text('Submit Request'),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Expanded(
               child: ListView.builder(
                 itemCount: requests.length,
                 itemBuilder: (context, index) {
                   final request = requests[index];
                   return Card(
-                    margin: EdgeInsets.symmetric(vertical: 8.0),
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
                     elevation: 4,
                     child: ListTile(
                       title: Text('Room: ${request.roomNumber}'),
                       subtitle: Text('Issue: ${request.issueDescription}'),
-                      contentPadding: EdgeInsets.all(16.0),
+                      contentPadding: const EdgeInsets.all(16.0),
                     ),
                   );
                 },

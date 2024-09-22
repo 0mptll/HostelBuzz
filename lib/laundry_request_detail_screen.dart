@@ -6,17 +6,17 @@ import 'laundry_request.dart';
 class LaundryRequestDetailScreen extends StatelessWidget {
   final LaundryRequest request;
 
-  LaundryRequestDetailScreen({required this.request});
+  const LaundryRequestDetailScreen({super.key, required this.request});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Laundry Request Details"),
+        title: const Text("Laundry Request Details"),
         backgroundColor: Colors.teal, // Consistent theme color
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: <Widget>[
             _buildDetailTile("Name", request.studentName),
@@ -39,13 +39,13 @@ class LaundryRequestDetailScreen extends StatelessWidget {
           Expanded(
             child: Text(
               "$label:",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
             child: Text(
               value,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
               textAlign: TextAlign.end,
             ),
           ),

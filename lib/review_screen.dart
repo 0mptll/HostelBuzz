@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'review.dart';
 
 class ReviewScreen extends StatefulWidget {
+  const ReviewScreen({super.key});
+
   @override
   _ReviewScreenState createState() => _ReviewScreenState();
 }
@@ -22,7 +24,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rate and Review Food'),
+        title: const Text('Rate and Review Food'),
         backgroundColor: Colors.teal, // Consistent theme color
       ),
       body: Column(
@@ -33,13 +35,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
               itemBuilder: (context, index) {
                 final review = reviews[index];
                 return Card(
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   elevation: 5,
                   child: ListTile(
-                    contentPadding: EdgeInsets.all(16),
+                    contentPadding: const EdgeInsets.all(16),
                     title: Text(
                       review.text,
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
                       review.date.toLocal().toString(),
@@ -57,7 +59,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 Expanded(
                   child: TextField(
                     controller: _controller,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Write a review',
                       border: OutlineInputBorder(),
                       contentPadding: EdgeInsets.symmetric(horizontal: 12),
@@ -66,9 +68,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     keyboardType: TextInputType.multiline,
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   color: Colors.teal,
                   onPressed: () {
                     if (_controller.text.isNotEmpty) {
